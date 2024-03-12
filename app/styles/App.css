@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo|Oswald|Work+Sans&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f3f3f3;
+}
+
+small {
+    color: #FDFDFD;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+    .results {
+        font-size: 25px;
+    }
+
+    .exchange-rate {
+        font-size: 12px;
+
+    }
+}
+
+
+.exchange-rate {
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
