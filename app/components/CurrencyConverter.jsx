@@ -76,7 +76,7 @@ const CurrencyConverter = () => {
         ) : (
           <div className="row align-items-center justify-content-center mt-4">
             <small>
-              *Switch between cheque and cash for your currency conversions.
+              *Switch between non-cash and cash for your currency conversions.
               Rates are subject to change without notice.
             </small>
           </div>

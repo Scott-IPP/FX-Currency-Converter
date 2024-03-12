@@ -46,7 +46,7 @@ const Results = props => {
       </div>
       <div className="row  align-items-center justify-content-center mt-4">
         <small className="text-center">
-          *Switch between cheque and cash for your currency conversions. Rates
+          *Switch between non-cash and cash for your currency conversions. Rates
           are subject to change without notice.
         </small>
       </div>
