@@ -1,17 +1,17 @@
 <?php
 
 /**
- * WP-Reactivate
+ * WP-Currency-Converter
  *
  *
- * @package   WP-Reactivate
- * @author    Pangolin
+ * @package   WP-Currency-Converter
+ * @author   SUPERUSER41
  * @license   GPL-3.0
- * @link      https://gopangolin.com
- * @copyright 2017 Pangolin (Pty) Ltd
+ * @link      https://github.com/SUPERUSER41
+ * @copyright 2019SUPERUSER41
  */
 
-namespace Pangolin\WPR;
+namespace SUPERUSER41\CC;
 
 /**
  * @subpackage Plugin
@@ -28,7 +28,7 @@ class Plugin
 	 *
 	 * @var      string
 	 */
-	protected $plugin_slug = 'ipp-currency-converter';
+	protected $plugin_slug = 'wp-currency-converter';
 
 	/**
 	 * Instance of this class.
@@ -46,7 +46,7 @@ class Plugin
 	 */
 	private function __construct()
 	{
-		$this->plugin_version = WP_REACTIVATE_VERSION;
+		$this->plugin_version = WP_CURRENCY_CONVERTER_VERSION;
 	}
 
 	/**
@@ -80,7 +80,7 @@ class Plugin
 	 */
 	public static function activate()
 	{
-		add_option('ipp_currency_converter');
+		add_option('wp_currency_converter_setting');
 	}
 
 	/**

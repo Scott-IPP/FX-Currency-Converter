@@ -3,4 +3,4 @@
 if (!defined('WP_UNINSTALL_PLUGIN'))
   exit();
 
-delete_option('ipp_currency_converter');
+delete_option('wp_currency_converter_setting');

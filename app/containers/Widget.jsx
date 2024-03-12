@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CurrencyConverter from "../components/CurrencyConverter";
 
+//TODO: Show currency converter component here
 export default class Widget extends Component {
   render() {
     return (
       <div>
-        <CurrencyConverter />
+        <h1>WP Currency Converter Widget</h1>
+        <p>Title: {this.props.wpObject.title}</p>
       </div>
     );
   }

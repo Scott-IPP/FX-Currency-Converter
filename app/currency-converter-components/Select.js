@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
-import "../styles/Select.css";
+import "../../assets/css/Select.css";
 
 const Select = props => {
   const [items, setItems] = useState({ items: [] });
@@ -22,11 +24,7 @@ const Select = props => {
         <div className="select--selected-item">
           <div className="row align-items-center justify-content-center">
             <div className="col-3">
-              <img
-                className="flag"
-                src={selectedItem ? selectedItem.data.image : ""}
-                alt=""
-              />
+              <img src={selectedItem ? selectedItem.data.image : ""} alt="" />
             </div>
             <div className="col-9">
               <div className="currency-block">
@@ -63,7 +61,7 @@ const Select = props => {
                 }
               >
                 <div className="col-3">
-                  <img className="flag" src={item.data.image} alt="" />
+                  <img src={item.data.image} alt="" />
                 </div>
                 <div className="col-9">
                   <div className="currency-block">
@@ -81,7 +79,7 @@ const Select = props => {
               className="selected row align-items-center justify-content-center"
             >
               <div className="col-3">
-                <img className="flag" src={selectedItem.data.image} alt="" />
+                <img src={selectedItem.data.image} alt="" />
               </div>
               <div className="col-9">
                 <div className="currency-block">

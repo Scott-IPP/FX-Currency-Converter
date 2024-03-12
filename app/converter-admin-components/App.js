@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import CashTable from "./CashTable";
 import ChequeTable from "./ChequeTable";
 import Tab from "react-bootstrap/Tab";
@@ -7,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 
 import axios from "axios";
 
-const MainAdmin = () => {
+const App = () => {
   const [currencies, setCurrencies] = useState({ currencies: [] });
 
   useEffect(() => {
@@ -30,13 +29,13 @@ const MainAdmin = () => {
           <h2>Cash Rates</h2>
           <small className="text-muted">Edit Cash Rates</small>
           <br /> <br />
-          <Tab.Container defaultActiveKey="first">
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Nav variant="pills">
               <Nav.Item>
-                <Nav.Link eventKey="first">Buying</Nav.Link>
+                <Nav.Link eventKey="first">Our Buying Rates</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">Selling</Nav.Link>
+                <Nav.Link eventKey="second">Our Selling Rates</Nav.Link>
               </Nav.Item>
             </Nav>
             <Tab.Content>
@@ -53,21 +52,21 @@ const MainAdmin = () => {
           <h2>Non-Cash Rates</h2>
           <small className="text-muted">Edit Non-Cash Rate</small>
           <br /> <br />
-          <Tab.Container defaultActiveKey="first">
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Nav variant="pills">
               <Nav.Item>
-                <Nav.Link eventKey="first">Buying</Nav.Link>
+                <Nav.Link eventKey="first">Our Buying Rates</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">Selling</Nav.Link>
+                <Nav.Link eventKey="second">Our Selling Rates</Nav.Link>
               </Nav.Item>
             </Nav>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-                <ChequeTable currencies={currencies} />
+                <ChequeTable action={"buy"} currencies={currencies} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
-                <ChequeTable currencies={currencies} />
+                <ChequeTable action={"sell"} currencies={currencies} />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
@@ -77,4 +76,4 @@ const MainAdmin = () => {
   );
 };
 
-export default MainAdmin;
+export default App;

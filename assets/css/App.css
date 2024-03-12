@@ -23,6 +23,13 @@ small {
     }
 }
 
+.converter-results {
+    color: #ffffff !important;
+}
+
+.cancel-btn {
+    border: 1px solid white;
+}
 
 .exchange-rate {
     font-family: 'Archivo', sans-serif;

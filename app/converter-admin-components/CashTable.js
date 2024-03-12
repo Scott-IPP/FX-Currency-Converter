@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
+import "../../assets/css/admin.css";
 import Alert from "react-bootstrap/Alert";
 
-const EditForm = ({ update, code, rate }) => {
+// eslint-disable-next-line no-unused-vars
+const EditForm = ({ update, action, code, rate }) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState("");
 
@@ -57,7 +59,7 @@ const EditForm = ({ update, code, rate }) => {
   );
 };
 
-const ChequeTable = props => {
+const CashTable = props => {
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
@@ -97,12 +99,14 @@ const ChequeTable = props => {
       ) : (
         ""
       )}
+
       <table className="table table-hover mt-3">
         <thead>
           <tr>
             <th scope="col">Currency</th>
             <th scope="col">Code</th>
             <th scope="col">Last Updated</th>
+
             <th scope="col">
               {props.action === "buy" ? "Buy Rate" : "Sell Rate"}
             </th>
@@ -113,9 +117,7 @@ const ChequeTable = props => {
             props.currencies.map(currency => (
               <tr key={currency.id}>
                 <td>
-                  <span role="img" aria-label="Jamaica">
-                    {currency.data.flag}
-                  </span>
+                  <span role="img">{currency.data.flag}</span>
                   {currency.data.name}
                 </td>
                 <td>{currency.data.base}</td>
@@ -130,14 +132,14 @@ const ChequeTable = props => {
                       update={update}
                       action={props.action}
                       code={currency.id}
-                      rate={currency.data.cheque.buy}
+                      rate={currency.data.cash.buy}
                     />
                   ) : (
                     <EditForm
                       update={update}
                       action={props.action}
                       code={currency.id}
-                      rate={currency.data.cheque.sell}
+                      rate={currency.data.cash.sell}
                     />
                   )}
                 </td>
@@ -153,4 +155,4 @@ const ChequeTable = props => {
     </div>
   );
 };
-export default ChequeTable;
+export default CashTable;

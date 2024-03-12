@@ -1,17 +1,17 @@
 <?php
 
 /**
- * WP-Reactivate
+ * WP-Currency-Converter
  *
  *
- * @package   WP-Reactivate
- * @author    Pangolin
+ * @package   WP-Currency-Converter
+ * @author   SUPERUSER41
  * @license   GPL-3.0
- * @link      https://gopangolin.com
- * @copyright 2017 Pangolin (Pty) Ltd
+ * @link      https://github.com/SUPERUSER41
+ * @copyright 2019SUPERUSER41
  */
 
-namespace Pangolin\WPR;
+namespace SUPERUSER41\CC;
 
 /**
  * @subpackage Shortcode
@@ -59,7 +59,7 @@ class Shortcode
 		$this->plugin_slug = $plugin->get_plugin_slug();
 		$this->version = $plugin->get_plugin_version();
 
-		add_shortcode('ipp-currency-converter', array($this, 'shortcode'));
+		add_shortcode('wp-currency-converter', array($this, 'shortcode'));
 	}
 
 
@@ -89,17 +89,17 @@ class Shortcode
 		wp_enqueue_script($this->plugin_slug . '-shortcode-script');
 		wp_enqueue_style($this->plugin_slug . '-shortcode-style');
 
-		$object_name = 'wpr_object_' . uniqid();
+		$object_name = 'cc_object_' . uniqid();
 
 		$object = shortcode_atts(array(
 			'title'       => 'Currency Converter',
 			'api_nonce'   => wp_create_nonce('wp_rest'),
 			'api_url'	  => rest_url($this->plugin_slug . '/v1/'),
-		), $atts, 'wp-reactivate');
+		), $atts, 'wp-currency-converter');
 
 		wp_localize_script($this->plugin_slug . '-shortcode-script', $object_name, $object);
 
-		$shortcode = '<div class="wp-reactivate-shortcode" data-object-id="' . $object_name . '"></div>';
+		$shortcode = '<div class="wp-currency-converter-shortcode" data-object-id="' . $object_name . '"></div>';
 		return $shortcode;
 	}
 }

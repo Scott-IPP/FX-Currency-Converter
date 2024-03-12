@@ -1,37 +1,37 @@
 <?php
 
 /**
- * IPP-Currency-Converter
+ * WP-Currency-Converter
  *
  *
- * @package   IPP Currency Converter
- * @author    IPP
+ * @package   WP-Currency-Converter
+ * @author    SUPERUSER41
  * @license   GPL-3.0
- * @link      https://itspixelperfect.com
- * @copyright 2019 IPP
+ * @link      https://github.com/SUPERUSER41
+ * @copyright 2019 SUPERUSER41
  *
  * @wordpress-plugin
- * Plugin Name:       IPP-Currency-Converter
- * Plugin URI:        https://itspixelperfect.com
- * Description:       Currency Converter
- * Version:           1.0.1
- * Author:            IPP
- * Author URI:        https://itspixelperfect.com
- * Text Domain:       wp-reactivate
+ * Plugin Name:       WP-Currency-Converter
+ * Plugin URI:        https://github.com/SUPERUSER41
+ * Description:       Reactjs currency converter plugin for wordpress
+ * Version:           1.0.0
+ * Author:           SUPERUSER41
+ * Author URI:        https://github.com/SUPERUSER41
+ * Text Domain:       wp-currency-converter
  * License:           GPL-3.0
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.txt
  * Domain Path:       /languages
  */
 
 
-namespace Pangolin\WPR;
+namespace SUPERUSER41\CC;
 
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
-define('WP_REACTIVATE_VERSION', '1.0.2');
+define('WP_CURRENCY_CONVERTER_VERSION', '1.0.0');
 
 
 /**
@@ -78,11 +78,11 @@ spl_autoload_register(function ($class) {
  */
 function init()
 {
-    $wpr = Plugin::get_instance();
-    $wpr_shortcode = Shortcode::get_instance();
-    $wpr_admin = Admin::get_instance();
+    $cc = Plugin::get_instance();
+    $cc_shortcode = Shortcode::get_instance();
+    $cc_admin = Admin::get_instance();
 }
-add_action('plugins_loaded', 'Pangolin\\WPR\\init');
+add_action('plugins_loaded', 'SUPERUSER41\\CC\\init');
 
 
 
@@ -95,10 +95,10 @@ function widget_init()
 {
     return register_widget(new Widget);
 }
-add_action('widgets_init', 'Pangolin\\WPR\\widget_init');
+add_action('widgets_init', 'SUPERUSER41\\CC\\widget_init');
 
 /**
  * Register activation and deactivation hooks
  */
-register_activation_hook(__FILE__, array('Pangolin\\WPR\\Plugin', 'activate'));
-register_deactivation_hook(__FILE__, array('Pangolin\\WPR\\Plugin', 'deactivate'));
+register_activation_hook(__FILE__, array('SUPERUSER41\\CC\\Plugin', 'activate'));
+register_deactivation_hook(__FILE__, array('SUPERUSER41\\CC\\Plugin', 'deactivate'));

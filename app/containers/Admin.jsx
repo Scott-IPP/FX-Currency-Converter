@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import MainAdmin from "../components/MainAdmin";
+import App from "../converter-admin-components/App";
 
 export default class Admin extends Component {
   render() {
-    return (
-      <div>
-        <MainAdmin />
-      </div>
-    );
+    return <App />;
   }
 }

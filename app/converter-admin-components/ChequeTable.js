@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import axios from "axios";
+import "../../assets/css/admin.css";
 import Alert from "react-bootstrap/Alert";
 
-const EditForm = ({ update, code, rate }) => {
+// eslint-disable-next-line no-unused-vars
+const EditForm = ({ update, action, code, rate }) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState("");
 
@@ -57,16 +59,16 @@ const EditForm = ({ update, code, rate }) => {
   );
 };
 
-const CashTable = props => {
+const ChequeTable = props => {
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
   const update = async (code, value) => {
     if (props.action === "buy") {
       const result = await axios.put(
-        `https://fx-currency-converter.firebaseapp.com/api/v1/cash/currencies/${code}`,
+        `https://fx-currency-converter.firebaseapp.com/api/v1/cheque/currencies/${code}`,
         {
-          cash: {
+          cheque: {
             buy: value
           }
         }
@@ -75,9 +77,9 @@ const CashTable = props => {
       setMessage(result.data.success_message);
     } else {
       const result = await axios.put(
-        `https://fx-currency-converter.firebaseapp.com/api/v1/cash/currencies/${code}`,
+        `https://fx-currency-converter.firebaseapp.com/api/v1/cheque/currencies/${code}`,
         {
-          cash: {
+          cheque: {
             sell: value
           }
         }
@@ -104,7 +106,6 @@ const CashTable = props => {
             <th scope="col">Currency</th>
             <th scope="col">Code</th>
             <th scope="col">Last Updated</th>
-
             <th scope="col">
               {props.action === "buy" ? "Buy Rate" : "Sell Rate"}
             </th>
@@ -115,9 +116,7 @@ const CashTable = props => {
             props.currencies.map(currency => (
               <tr key={currency.id}>
                 <td>
-                  <span role="img" aria-label="Jamaica">
-                    {currency.data.flag}
-                  </span>
+                  <span role="img">{currency.data.flag}</span>
                   {currency.data.name}
                 </td>
                 <td>{currency.data.base}</td>
@@ -130,14 +129,16 @@ const CashTable = props => {
                   {props.action === "buy" ? (
                     <EditForm
                       update={update}
+                      action={props.action}
                       code={currency.id}
-                      rate={currency.data.cash.buy}
+                      rate={currency.data.cheque.buy}
                     />
                   ) : (
                     <EditForm
                       update={update}
+                      action={props.action}
                       code={currency.id}
-                      rate={currency.data.cash.sell}
+                      rate={currency.data.cheque.sell}
                     />
                   )}
                 </td>
@@ -153,4 +154,4 @@ const CashTable = props => {
     </div>
   );
 };
-export default CashTable;
+export default ChequeTable;

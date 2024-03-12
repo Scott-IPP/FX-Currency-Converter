@@ -8,5 +8,8 @@ import ReactDOM from "react-dom";
 import Admin from "./containers/Admin.jsx";
 
 document.addEventListener("DOMContentLoaded", function() {
-  ReactDOM.render(<Admin />, document.getElementById("ipp-currency-converter"));
+  ReactDOM.render(
+    <Admin wpObject={window.cc_object} />,
+    document.getElementById("wp-currency-converter-admin")
+  );
 });

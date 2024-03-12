@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import CurrencyConverter from "../components/CurrencyConverter";
+import App from "../currency-converter-components/App";
 
 export default class Shortcode extends Component {
   render() {
     return (
       <div>
-        <CurrencyConverter />
+        <App />
       </div>
     );
   }
 }
-
-Shortcode.propTypes = {
-  wpObject: PropTypes.object
-};

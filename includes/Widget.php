@@ -1,17 +1,17 @@
 <?php
 
 /**
- * WP-Reactivate
+ * WP-Currency-Converter
  *
  *
- * @package   WP-Reactivate
- * @author    Pangolin
+ * @package   WP-Currency-Converter
+ * @author   SUPERUSER41
  * @license   GPL-3.0
- * @link      https://gopangolin.com
- * @copyright 2017 Pangolin (Pty) Ltd
+ * @link      https://github.com/SUPERUSER41
+ * @copyright 2019SUPERUSER41
  */
 
-namespace Pangolin\WPR;
+namespace SUPERUSER41\CC;
 
 /**
  * @subpackage Widget
@@ -31,10 +31,10 @@ class Widget extends \WP_Widget
 		$this->version = $plugin->get_plugin_version();
 
 		$widget_ops = array(
-			'description' => esc_html__('Ipp currency converter widget.', $this->plugin_slug),
+			'description' => esc_html__('WP Currency Converter demo widget.', $this->plugin_slug),
 		);
 
-		parent::__construct('wpr-widget', esc_html__('IPP Currency Converter', $this->plugin_slug), $widget_ops);
+		parent::__construct('cc-widget', esc_html__('WP Currency Converter', $this->plugin_slug), $widget_ops);
 	}
 
 	/**
@@ -47,10 +47,8 @@ class Widget extends \WP_Widget
 	{
 		wp_enqueue_script($this->plugin_slug . '-widget-script', plugins_url('assets/js/widget.js', dirname(__FILE__)), array('jquery'), $this->version);
 		wp_enqueue_style($this->plugin_slug . '-widget-style', plugins_url('assets/css/widget.css', dirname(__FILE__)), $this->version);
-		wp_register_style($this->plugin_slug . '-widget-bootsrap', plugins_url('assets/css/bootstrap.min.css', dirname(__FILE__)), $this->version);
 
-
-		$object_name = 'wpr_object_' . uniqid();
+		$object_name = 'cc_object_' . uniqid();
 
 		$object = array(
 			'title'       => $instance['title'],
@@ -62,28 +60,28 @@ class Widget extends \WP_Widget
 
 		echo $args['before_widget'];
 
-		?><div class="wp-reactivate-widget" data-object-id="<?php echo $object_name ?>"></div><?php
+		?><div class="wp-currency-converter-widget" data-object-id="<?php echo $object_name ?>"></div><?php
 
-																										echo $args['after_widget'];
-																									}
+																												echo $args['after_widget'];
+																											}
 
-																									/**
-																									 * Outputs the options form on admin
-																									 *
-																									 * @param array $instance
-																									 * @return string|void
-																									 */
-																									public function form($instance)
-																									{
-																										$title = (!empty($instance['title'])) ? $instance['title'] : '';
-																										?>
+																											/**
+																											 * Outputs the options form on admin
+																											 *
+																											 * @param array $instance
+																											 * @return string|void
+																											 */
+																											public function form($instance)
+																											{
+																												$title = (!empty($instance['title'])) ? $instance['title'] : '';
+																												?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>">
-				<?php esc_html_e('Title:', 'ipp-currency-converter'); ?>
+				<?php esc_html_e('Title:', 'wp-currency-converter'); ?>
 			</label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
 		</p>
-	<?php
+<?php
 	}
 
 	/**

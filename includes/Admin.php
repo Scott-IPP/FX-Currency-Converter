@@ -1,17 +1,17 @@
 <?php
 
 /**
- * WP-Reactivate
+ * WP-Currency-Converter
  *
  *
- * @package   WP-Reactivate
- * @author    Pangolin
+ * @package   WP-Currency-Converter
+ * @author   SUPERUSER41
  * @license   GPL-3.0
- * @link      https://gopangolin.com
- * @copyright 2017 Pangolin (Pty) Ltd
+ * @link      https://github.com/SUPERUSER41
+ * @copyright 2019SUPERUSER41
  */
 
-namespace Pangolin\WPR;
+namespace SUPERUSER41\CC;
 
 /**
  * @subpackage Admin
@@ -96,6 +96,7 @@ class Admin
 		// Add the options page and menu item.
 		add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
 
+
 		// Add plugin action link point to settings page
 		add_filter('plugin_action_links_' . $this->plugin_basename, array($this, 'add_action_links'));
 	}
@@ -115,6 +116,7 @@ class Admin
 		$screen = get_current_screen();
 		if ($this->plugin_screen_hook_suffix == $screen->id) {
 			wp_enqueue_style($this->plugin_slug . '-style', plugins_url('assets/css/bootstrap.min.css', dirname(__FILE__)), array(), $this->version);
+			wp_enqueue_style($this->plugin_slug . '-style', plugins_url('assets/css/admin.css', dirname(__FILE__)), array(), $this->version);
 		}
 	}
 
@@ -136,10 +138,9 @@ class Admin
 
 			wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.js', dirname(__FILE__)), array('jquery'), $this->version);
 
-
 			wp_localize_script(
 				$this->plugin_slug . '-admin-script',
-				'wpr_object',
+				'cc_object',
 				array(
 					'api_nonce'   => wp_create_nonce('wp_rest'),
 					'api_url'	  => rest_url($this->plugin_slug . '/v1/'),
@@ -159,8 +160,15 @@ class Admin
 		 * Add a settings page for this plugin to the Settings menu.
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-			__('FX Currency Converter', $this->plugin_slug),
-			__('FX Currency Converter', $this->plugin_slug),
+			__('WP Currency Converter', $this->plugin_slug),
+			__('WP Currency Converter', $this->plugin_slug),
+			'manage_options',
+			$this->plugin_slug,
+			array($this, 'display_plugin_admin_page')
+		);
+		$this->plugin_screen_hook_suffix = add_menu_page(
+			__('WP Currency Converter', $this->plugin_slug),
+			__('WP Currency Converter', $this->plugin_slug),
 			'manage_options',
 			$this->plugin_slug,
 			array($this, 'display_plugin_admin_page')
@@ -174,21 +182,21 @@ class Admin
 	 */
 	public function display_plugin_admin_page()
 	{
-		?><div id="ipp-currency-converter"></div><?php
-														}
+		?><div id="wp-currency-converter-admin"></div><?php
+															}
 
-														/**
-														 * Add settings action link to the plugins page.
-														 *
-														 * @since    1.0.0
-														 */
-														public function add_action_links($links)
-														{
-															return array_merge(
-																array(
-																	'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>',
-																),
-																$links
-															);
+															/**
+															 * Add settings action link to the plugins page.
+															 *
+															 * @since    1.0.0
+															 */
+															public function add_action_links($links)
+															{
+																return array_merge(
+																	array(
+																		'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>',
+																	),
+																	$links
+																);
+															}
 														}
-													}
